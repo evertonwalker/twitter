@@ -1,0 +1,5 @@
+<ul >
+    <li *ngFor="let tweet of tweets">
+        {{ tweet.name }}:  {{ tweet.message }} -- {{ tweet.date | date: 'h dd/MM/yyyy' }}
+    </li>
+</ul>
