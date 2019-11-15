@@ -8,6 +8,8 @@ import { TweetService } from '../tweet.service';
 })
 export class TweetsComponent implements OnInit {
 
+
+  textTweet = '';
   tweets = [];
 
   constructor(private tweetService: TweetService) { }
@@ -15,6 +17,16 @@ export class TweetsComponent implements OnInit {
   ngOnInit() {
     this.tweetService.getTwettersFromUser(1)
       .subscribe(r => this.tweets = r.results, error => console.log(error));
+  }
+
+  sendTweet(): void {
+    this.tweetService.postTwett(this.textTweet, 1)
+      .subscribe(() => {
+        this.textTweet = '';
+        this.tweetService.getTwettersFromUser(1)
+          .subscribe(r => this.tweets = r.results, error => console.log(error));
+      }, error => console.log(error));
+
   }
 
 }

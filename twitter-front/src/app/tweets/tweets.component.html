@@ -1,5 +1,30 @@
-<ul >
-    <li *ngFor="let tweet of tweets">
-        {{ tweet.name }}:  {{ tweet.message }} -- {{ tweet.date | date: 'h dd/MM/yyyy' }}
-    </li>
-</ul>
+<div class="col-12">
+    <span class="display-4">Bem vindo ao twitter</span>
+    <hr>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">No que você está pensando?</label>
+                <textarea class="form-control" rows="3" [(ngModel)]="textTweet"></textarea>
+                <button class="btn btn-primary mt-2" (click)="sendTweet()"> Postar</button>
+            </div>
+        </div>
+    </div>
+    <div class="height-list">
+        <ul class="list-group">
+            <li *ngFor="let tweet of tweets" class="list-group-item">
+                <div class="card">
+                    <div class="card-header">
+                        {{ tweet.name }}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ tweet.date | date: 'M/d/yy, h:mm a' }}: {{ tweet.message }} </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

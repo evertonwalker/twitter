@@ -22,7 +22,7 @@ api.recentsTweets = (req, res) => {
 
     const id = +req.params.id;
 
-    const query  = `select tweet.id, message, date, user.name from tweet inner join user on tweet.fk_user = user.id where fk_user in (select fk_another_user from follow where fk_user = ${id}) order by date desc;`
+    const query = `select tweet.id, message, date, user.name from tweet inner join user on tweet.fk_user = user.id where fk_user in (select fk_another_user from follow where fk_user = ${id}) or fk_user = ${id} order by date desc;`
     connectionPool.query(query, (err, results) => {
         if (err) {
             res.status(500).json({ message: 'Falha ao executar as querys' });
@@ -42,7 +42,7 @@ api.userTweet = (req, res) => {
 
     const id = +req.params.id;
 
-    const query  = `select tweet.id, message, date, user.name from tweet inner join user on tweet.fk_user = user.id where tweet.id = ${id};`
+    const query = `select tweet.id, message, date, user.name from tweet inner join user on tweet.fk_user = user.id where tweet.id = ${id};`
     connectionPool.query(query, (err, results) => {
         if (err) {
             res.status(500).json({ message: 'Falha ao executar as querys' });

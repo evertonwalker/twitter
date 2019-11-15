@@ -9,12 +9,12 @@ export class FollowService {
 
   constructor(private http: HttpClient) { }
 
-  followUser(id): Observable<any>{
-    return this.http.post('/api/follow/', { userOne: 1, userTwo: id });
+  followUser(userOne: number, userTwo: number): Observable<any> {
+    return this.http.post('/api/follow/', { userOne, userTwo });
   }
 
-  unfollowUser(id): Observable<any>{
-    return this.http.post('/api/unfollow/', { userOne: 1, userTwo: id });
+  unfollowUser(userOne: number, userTwo: number): Observable<any> {
+    return this.http.post('/api/unfollow/', { userOne, userTwo });
   }
 
 

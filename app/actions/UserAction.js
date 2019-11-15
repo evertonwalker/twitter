@@ -4,7 +4,10 @@ var connectionPool = require('../shared/utils').createConnection();
 var api = {};
 
 api.getAllUsers = (req, res) => {
-    const query = 'select * from user;';
+
+    const id = req.params.id;
+
+    const query = `select * from user where id != ${id};`;
     connectionPool.query(query, (err, results) => {
         if (err) {
             res.status(500).json({ message: 'Falha ao executar as querys' });

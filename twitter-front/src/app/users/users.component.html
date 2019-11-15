@@ -1,1 +1,35 @@
-<p>users works!</p>
+<div class="col-12">
+    <span class="display-4">Usuários</span>
+    <hr>
+</div>
+
+<div class="container mt-3">
+
+    <div class="col-12 text-center mb-3 mt-3" *ngIf="!hasUser; else showUsers">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <ng-template #showUsers>
+        <ul class="list-group">
+            <li *ngFor="let user of users" class="list-group-item">
+                <div class="row">
+                    <div class="col-6">
+                        <span> {{ user.name }} </span>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button class="btn btn-primary" (click)="followUser(user.id)" *ngIf="hasFollow(user.id); else notfollow">Seguir</button>
+                        <ng-template #notfollow>
+                            <button (click)="unfollowUser(user.id)" class="btn btn-danger">
+                                            Parar de seguir
+                                    </button>
+                        </ng-template>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </ng-template>
+
+</div>

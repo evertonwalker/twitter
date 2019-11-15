@@ -10,7 +10,7 @@ module.exports = function(app) {
 
     //USERS -> 
 
-    app.get('/api/users/', userAction.getAllUsers); 
+    app.get('/api/users/:id', userAction.getAllUsers);
 
 
     // FOLLOWERS -> 
@@ -24,5 +24,5 @@ module.exports = function(app) {
     app.post('/api/tweet/', tweetAction.postTweet);
     app.get('/api/tweets/:id', tweetAction.recentsTweets);
     app.get('/api/tweet/:id', tweetAction.userTweet);
-    
+
 };
